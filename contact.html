@@ -2,12 +2,17 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Culture haitienne</title>
+<title>Contact - Culture Haitienne</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
+    .alert {
+        margin-top: 15px;
+    }
+
+
 /* FOOTER STYLÉ */
 footer {
     background-color: #212529;
@@ -53,17 +58,16 @@ footer a:hover {
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container">
-<a class="navbar-brand fw-bold" href="index.html">Culture haitienne</a>
-
+<a class="navbar-brand fw-bold" href="index.html">Culture haitienne 🇭🇹</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
 <span class="navbar-toggler-icon"></span>
 </button>
-
 <div class="collapse navbar-collapse" id="nav">
 <ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+<li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
 <li class="nav-item"><a class="nav-link" href="monuments.html">Monuments</a></li>
 <li class="nav-item"><a class="nav-link" href="citadelle.html">Citadelle</a></li>
 <li class="nav-item"><a class="nav-link" href="fortjacques.html">Fort Jacques</a></li>
@@ -71,20 +75,94 @@ footer a:hover {
 <li class="nav-item"><a class="nav-link" href="mupana.html">Mupana</a></li>
 <li class="nav-item"><a class="nav-link" href="musique.html">Musiques</a></li>
 <li class="nav-item"><a class="nav-link" href="sanssouci.html">Palais Sans-Souci</a></li>
+<li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
 <li class="nav-item"><a class="nav-link" href="images.html">Images</a></li>
-<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 </ul>
 </div>
 </div>
 </nav>
 
-<section class="page-header py-5">
+<!-- HEADER -->
+<section class="page-header py-5 bg-light">
 <div class="container text-center">
-<h1 class="display-4">Bienvenue sur Culture haitienne</h1>
-<p>Découvrez les monuments historiques d’Haïti</p>
-<a href="monuments.html" class="btn btn-light mt-3">Voir les monuments</a>
+<h1 class="display-4">Contactez-nous</h1>
+<p>Nous aimerions avoir de vos nouvelles. Remplissez le formulaire ci-dessous !</p>
 </div>
 </section>
+
+<!-- FORMULAIRE -->
+<section class="py-5">
+<div class="container">
+<h2 class="text-center fw-bold mb-4">Envoyez un message</h2>
+
+<form id="contactForm" class="col-md-6 mx-auto needs-validation" novalidate>
+
+    <div id="alertBox"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">
+            Veuillez entrer votre nom.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" required>
+        <div class="invalid-feedback">
+            Veuillez entrer un email valide.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" id="message" rows="4" required></textarea>
+        <div class="invalid-feedback">
+            Veuillez entrer votre message.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">
+        <i class="bi bi-send"></i> Envoyer
+    </button>
+
+</form>
+</div>
+</section>
+
+<!-- SCRIPT VALIDATION -->
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let form = this;
+    let alertBox = document.getElementById("alertBox");
+
+    if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+
+        alertBox.innerHTML = `
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Erreur !</strong> Veuillez remplir correctement tous les champs.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `;
+        return;
+    }
+
+    alertBox.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Succès !</strong> Votre message a été envoyé avec succès.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+
+    form.reset();
+    form.classList.remove("was-validated");
+});
+</script>
 
 <!-- FOOTER -->
 <footer>
